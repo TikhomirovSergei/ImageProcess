@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Простой обработчик изображений</string>
+
+    <string name="img_main">Добавить картинку</string>
+    <string name="btn_rotate">Поворот</string>
+    <string name="btn_invertColors">Черно-белое</string>
+    <string name="btn_mirrorImage">Зеркально</string>
+    <string name="btn_process">Обработка</string>
+    <string name="btn_delete">Удаление</string>
+
+    <string name="txt_ItemId">Id</string>
+    <string name="img_ItemOperation">Тип операции</string>
+
+    <string name="dialog_selectSource">Выбрать источник</string>
+
+    <string name="undefinedOperation">Тип операции неизвестен!</string>
+    <string name="err_notSelectedImage">Выберите картинку нажатием на изображение "Добавить картинку" слева!</string>
+    <string name="err_permissionDenied">Нет прав на чтение файловой системы!</string>
+</resources>

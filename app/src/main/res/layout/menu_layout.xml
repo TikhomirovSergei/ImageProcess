@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_height="wrap_content"
+      android:layout_width="wrap_content">
+    <item
+            android:id="@+id/item_process"
+            android:showAsAction="ifRoom|withText"
+            android:title="@string/btn_process"
+            android:visible="true"/>
+    <item
+            android:id="@+id/item_delete"
+            android:showAsAction="ifRoom|withText"
+            android:title="@string/btn_delete"
+            android:visible="true"/>
+</menu>

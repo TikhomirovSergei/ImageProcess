@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Simple image converter</string>
+
+    <string name="img_main">Add image</string>
+    <string name="btn_rotate">Rotate</string>
+    <string name="btn_invertColors">Invert colors</string>
+    <string name="btn_mirrorImage">Mirror image</string>
+    <string name="btn_process">Process</string>
+    <string name="btn_delete">Delete</string>
+
+    <string name="txt_ItemId">Id</string>
+    <string name="img_ItemOperation">Operation type</string>
+
+    <string name="dialog_selectSource">Select source</string>
+
+    <string name="undefinedOperation">undefined operation!</string>
+    <string name="err_notSelectedImage">Select a picture by clicking on the image to add a picture to the left!</string>
+    <string name="err_permissionDenied">You don\'t have permission to access file location!</string>
+</resources>
