@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -24,12 +25,14 @@ import com.imageProcessor.Model.BD;
 import com.imageProcessor.Model.ItemBD;
 import com.imageProcessor.Model.ItemDBListAdapter;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private final int REQUEST_CODE = 999;
+    private final String cacheImageFileName = "image.txt";
+
     private Bitmap DEFAULT_IMAGE = null;
     private Uri outputFileUri;
 
@@ -114,14 +117,45 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
 
-        Bitmap bitmap = ((BitmapDrawable) imgMain.getDrawable()).getBitmap();
-        outState.putParcelable("bitmap", bitmap);
+        try {
+            String appPath = getApplicationContext().getFilesDir().getAbsolutePath() + "/" + cacheImageFileName;
+
+            FileOutputStream writer = new FileOutputStream(appPath);
+            writer.write(("").getBytes());
+            writer.close();
+
+            File file = new File(appPath);
+            OutputStream fOut = new FileOutputStream(file);
+
+            Bitmap bitmap = ((BitmapDrawable) imgMain.getDrawable()).getBitmap();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
+            fOut.flush();
+            fOut.close();
+
+            ArrayList<String> str = new ArrayList<>(1);
+            str.add(appPath);
+
+            outState.putStringArrayList("path", str);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        Bitmap bitmap = savedInstanceState.getParcelable("bitmap");
+        ArrayList<String> str = savedInstanceState.getStringArrayList("path");
+
+        Bitmap bitmap = null;
+        File f = new File(str.get(0));
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+        try {
+            bitmap = BitmapFactory.decodeStream(new FileInputStream(f), null, options);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
         imgMain.setImageBitmap(bitmap);
     }
 
