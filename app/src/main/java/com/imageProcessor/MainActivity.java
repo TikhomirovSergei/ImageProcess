@@ -193,11 +193,12 @@ public class MainActivity extends AppCompatActivity {
                 selectedImageUri = data.getData();
             }
 
-            try {
+            SetBitmap(selectedImageUri);
+            /*try {
                 imgMain.setImageBitmap(utils.loadImageFromUri(this, selectedImageUri));
             } catch (Exception e) {
                 e.printStackTrace();
-            }
+            }*/
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -212,6 +213,14 @@ public class MainActivity extends AppCompatActivity {
         list = new ArrayList<>();
         adapter = new ItemDBListAdapter(this, R.layout.image_item, list, this, bd);
         gridView.setAdapter(adapter);
+    }
+    
+    public void SetBitmap(Uri selectedImageUri) {
+        try {
+            imgMain.setImageBitmap(utils.loadImageFromUri(this, selectedImageUri));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void loadData() {
